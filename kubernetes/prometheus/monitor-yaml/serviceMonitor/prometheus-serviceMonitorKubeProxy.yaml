@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: kube-proxy
+  namespace: monitoring
+  labels:
+    k8s-app: kube-proxy
+spec:
+  jobLabel: k8s-app
+  endpoints:
+  - port: port
+    interval: 30s
+    port: http-metrics
+  selector:
+    matchLabels:
+      k8s-app: kube-proxy
+  namespaceSelector:
+    matchNames:
+    - kube-system

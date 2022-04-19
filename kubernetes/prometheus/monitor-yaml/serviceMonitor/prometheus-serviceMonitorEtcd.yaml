@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: kube-etcd
+  namespace: monitoring
+  labels:
+    k8s-app: kube-etcd
+spec:
+  jobLabel: k8s-app
+  endpoints:
+  - port: port
+    interval: 30s
+    port: http-metrics
+  selector:
+    matchLabels:
+      k8s-app: kube-etcd
+  namespaceSelector:
+    matchNames:
+    - kube-system

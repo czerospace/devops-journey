@@ -1,0 +1,32 @@
+apiVersion: apps/v1 #控制器接口版本
+kind: Deployment #控制器类型
+metadata:
+  name: nginx-deployment # Deployment 控制器名称
+  labels:
+    app: nginx-deployment # Deployment 控制器标签
+spec:
+  replicas: 3 # Deployment 副本数(容器数量)
+  selector:
+    matchLabels:
+      app: nginx-deployment #标签选择器
+  minReadySeconds: 1 #pod 准备时间
+  strategy:
+    type: RollingUpdate #pod 升级策略
+    rollingUpdate:
+      maxSurge: 1 #最大允许 1 个 pod 升级
+      maxUnavailable: 1 #最多允许 1 个 pod 失效
+  template:
+    metadata:
+      labels:
+        app: nginx-deployment #模板标签
+    spec:
+      containers:
+        - name: nginx-deployment #容器名称
+          image: nginx:latest #镜像名称
+          ports:
+            - containerPort: 80 #容器端口
+          readinessProbe: #容器就绪检测
+            tcpSocket:
+              port: 80 #检测端口
+            initialDelaySeconds: 5 #容器启动之后 5 秒检测
+            periodSeconds: 10 #容器初始化之后每隔 10 秒检测
