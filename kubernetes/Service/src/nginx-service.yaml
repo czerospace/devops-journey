@@ -1,0 +1,11 @@
+# 使用 service 暴露 nginx-deployment.yaml 中创建的 nginx
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    run: my-nginx
+  ports:
+    - port: 80
+      targetPort: 80

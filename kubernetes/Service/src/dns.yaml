@@ -1,0 +1,50 @@
+# Service 创建 DNS 记录
+#  busybox-1 将看到自己的域名 为 busybox-1.miaozong-yz.default.svc.cluster.local.
+#  busybox-2 将看到自己的域名 为 busybox-2.miaozong-yz.default.svc.cluster.local.
+apiVersion: v1
+kind: Service
+metadata:
+  name: dns-testsvc
+spec:
+  selector:
+    app: dnstest
+  ports:
+    - port: 9527
+      targetPort: 9527
+      name: foo
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox1
+  labels:
+    name: dns-testsvc
+spec:
+  hostname: busybox-1
+  subdomain: miaozong-yz
+  containers:
+    - name: busybox
+      image: busybox
+      command: ["sh", "-c", "sleep 3600"]
+      resources:
+        limits:
+          memory: "128Mi"
+          cpu: "500m"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox2
+  labels:
+    name: dns-testsvc
+spec:
+  hostname: busybox-2
+  subdomain: miaozong-yz
+  containers:
+    - name: busybox
+      image: busybox
+      command: ["sh", "-c", "sleep 3600"]
+      resources:
+        limits:
+          memory: "128Mi"
+          cpu: "500m"

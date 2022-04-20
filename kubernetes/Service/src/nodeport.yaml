@@ -1,0 +1,30 @@
+# 使用 nodeport 方式暴露 svc 给集群外部
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    name: nginx-nodeport
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+      resources:
+        limits:
+          memory: "128Mi"
+          cpu: "500m"
+      ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodeport-demo
+spec:
+  selector:
+    name: nginx-nodeport
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 31600
+  type: NodePort
