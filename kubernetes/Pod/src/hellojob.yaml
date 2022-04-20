@@ -1,0 +1,15 @@
+# 使用 job 跑一个 pod
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: hello
+spec:
+  completions: 5
+  template:
+    # 这里是 pod 模板
+    spec:
+      containers:
+        - name: hello
+          image: nginx
+          command: ["sh", "-c", 'echo "hello,kubernetes" && sleep 1']
+      restartPolicy: OnFailure

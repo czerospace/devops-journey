@@ -1,0 +1,22 @@
+# initPod
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myinitpod
+  labels:
+    name: myinitpod
+spec:
+  containers:
+    - name: myinitpod
+      image: busybox
+      command: ["sh", "-c", "date && sleep 3600"]
+      resources:
+        limits:
+          memory: "128Mi"
+          cpu: "500m"
+      ports:
+        - containerPort: 80
+  initContainers:
+    - name: init
+      image: busybox
+      command: ["sh", "-c", "date && sleep 10"]
