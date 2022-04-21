@@ -12,7 +12,7 @@ Ingress 可以提供负载均衡、SSL 终结和基于名称的虚拟托管。
 Ingress 公开了从集群外部到集群内服务的 HTTP 和 HTTPS 路由。 流量路由由 Ingress 资源上定义的规则控制。
 ```
 
-![image-20220406181458485](image\ingress.png)
+![image-20220406181458485](image/ingress.png)
 
 ```shell
 #1.用户请求到ingress负载均衡器
