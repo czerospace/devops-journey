@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    ingress.kubernetes.io/balance-algorithm: roundrobin
+    ingress.kubernetes.io/blue-green-deploy: group=blue=1,group=green=1
+    ingress.kubernetes.io/blue-green-mode: pod
+    ingress.kubernetes.io/ssl-redirect: "false"
+  name: bluegreen
+spec:
+  rules:
+    - host: bluegreen.example.com
+      http:
+        paths:
+          - backend:
+              serviceName: bluegreen
+              servicePort: 8000
+            path: /
