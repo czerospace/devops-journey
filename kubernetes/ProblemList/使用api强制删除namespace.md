@@ -1,6 +1,6 @@
 # 一、查看已存在的namespace
 
-![](images\ns.png)
+![](images/ns.png)
 
 ```shell
 如图，monitoring一直处于Terminating状态，kubectl delete ns monitoring无法删除，这里使用api强制删除的方式
@@ -13,7 +13,7 @@ kubectl get namespace monitoring -o json > monitoring.json
 cat monitoring.json
 ```
 
-![](images\json.png)
+![](images/json.png)
 
 # 三、修改json文件信息
 
