@@ -19,6 +19,8 @@ Helm是一个二进制文件，直接到github的release去下载就可以，地
 ##### 安装
 
 ```bash
+# 安装socat
+$ yum install socat -y
 # 解压
 $ tar -zxvf helm-v2.16.12-linux-amd64.tar.gz
 $ mv linux-amd64/helm /usr/local/bin/
