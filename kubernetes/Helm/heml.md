@@ -20,7 +20,7 @@ Helm是一个二进制文件，直接到github的release去下载就可以，地
 
 ```bash
 # 解压
-$ tar -zxvf helm-v2.13.1-linux-amd64.tar.gz
+$ tar -zxvf helm-v2.16.12-linux-amd64.tar.gz
 $ mv linux-amd64/helm /usr/local/bin/
 
 # 没配置环境变量的需要先配置好
@@ -41,10 +41,10 @@ $ helm repo add incubator https://aliacs-app-catalog.oss-cn-hangzhou.aliyuncs.co
 $ helm repo update
 
 # 因为官方的镜像无法拉取，使用-i指定自己的镜像
-$ helm init --service-account tiller --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.13.1  --stable-repo-url https://kubernetes.oss-cn-hangzhou.aliyuncs.com/charts
+$ helm init --service-account tiller --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.16.12  --stable-repo-url https://kubernetes.oss-cn-hangzhou.aliyuncs.com/charts
  
 # 创建TLS认证服务端
-$ helm init --service-account tiller --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.13.1 --tiller-tls-cert /etc/kubernetes/ssl/tiller001.pem --tiller-tls-key /etc/kubernetes/ssl/tiller001-key.pem --tls-ca-cert /etc/kubernetes/ssl/ca.pem --tiller-namespace kube-system --stable-repo-url https://kubernetes.oss-cn-hangzhou.aliyuncs.com/charts
+$ helm init --service-account tiller --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.16.12 --tiller-tls-cert /etc/kubernetes/ssl/server.pem --tiller-tls-key /etc/kubernetes/ssl/server-key.pem --tls-ca-cert /etc/kubernetes/ssl/ca.pem --tiller-namespace kube-system --stable-repo-url https://kubernetes.oss-cn-hangzhou.aliyuncs.com/charts
 ```
 
 ### 3. 给Tiller授权
