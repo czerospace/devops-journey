@@ -1,18 +1,27 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: example-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+  name: nginx
 spec:
+  ingressClassName: nginx
   rules:
-    - host: hello-world.info
+    - host: nginx1.czerospace.com
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: nginx-deployment-demo
+                name: nginx-8081
                 port:
-                  number: 80
+                  number: 8081
+    - host: nginx2.czerospace.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx-8082
+                port:
+                  number: 8082

@@ -15,6 +15,15 @@ kubectl describe node 192.168.51.221|grep Taints
 kubectl taint nodes 192.168.51.221  key=value:NoSchedule-
 ```
 
+# 标签
+```shell
+给节点增加一个标签
+kubectl   label nodes 192.168.51.222 app=ingress-nginx
+查看标签
+kubectl get node --show-labels
+删除标签
+kubectl   label nodes 192.168.51.222 app-
+```
 
 
 # 按 label 查找 Pod

@@ -1,0 +1,70 @@
+# 使用 Deployment 创建2个 nginx pod,创建两个 svc 分别与之对应
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment-1
+spec:
+  selector:
+    matchLabels:
+      name: nginx-demo1
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: nginx-demo1
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment-2
+spec:
+  selector:
+    matchLabels:
+      name: nginx-demo2
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: nginx-demo2
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-8081
+spec:
+  selector:
+    name: nginx-demo1
+  ports:
+    - port: 8081
+      targetPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-8082
+spec:
+  selector:
+    name: nginx-demo2
+  ports:
+    - port: 8082
+      targetPort: 80
