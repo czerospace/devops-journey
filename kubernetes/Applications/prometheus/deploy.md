@@ -2,7 +2,7 @@
 
 ```shell
 1.部署nfs
-#先在服务器部署nfs
+#先在服务器部署nfs,使用nfs作为存储
 #修改nfs 配置文件(修改ip)
 nfs-deployment.yaml
 kubectl apply -f  .
