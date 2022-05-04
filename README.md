@@ -155,3 +155,7 @@
 ## 20220427
 - 今早体重77.7kg，决定了，五一不回家，断掉生酮，运动加正常饮食！
 - 深入理解nginx-ingress，traefik-ingress，用traefik-ingress代理Prometheus和grafana页面
+
+## 20220504
+- 今早体重78kg，过了一个无语的五一，淦！
+- 总结一下rook-ceph

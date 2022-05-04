@@ -35,3 +35,7 @@ kubectl get pod -l run=my-nginx
 kubectl get pod -l run=my-nginx -o yaml
 ```
 
+# 强制删除处于 Terminating 状态的 pod
+```shell
+kubectl delete pods <pod> --grace-period=0 --force
+```
