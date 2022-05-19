@@ -8,7 +8,7 @@ status_arg="$1"
 redis_status(){
 	#接收函数调用的参数
 	status="$1"
-	redis_status_value=$(/usr/bin/redis-cli -h 127.0.0.1 -p 6379 info | grep $status | cut -d ':' -f2)
+	redis_status_value=$(/usr/bin/redis-cli -h 127.0.0.1 -p 6379 info | grep -w $status | cut -d ':' -f2)
 	echo "${redis_status_value}"
 }
 
