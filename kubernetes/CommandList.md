@@ -39,3 +39,8 @@ kubectl get pod -l run=my-nginx -o yaml
 ```shell
 kubectl delete pods <pod> --grace-period=0 --force
 ```
+# 按 cpu 利用率给 pod 排序
+
+```shell
+kubectl top pod --sort-by="cpu" -A
+```
