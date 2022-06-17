@@ -12,18 +12,6 @@ type memCollector struct {
 	labelValues []string
 }
 
-// 每个收集器都必须实现descripe函数
-func (c *memCollector) Describe(ch chan<- *prometheus.Desc) {
-	ch <- c.myDesc
-}
-
-// 采集指标
-func (c *memCollector) Collect(ch chan<- prometheus.Metric) {
-	Mem, _ := mem.VirtualMemory()
-	fmt.Println(Mem.Total)
-	ch <- prometheus.MustNewConstMetric(c.myDesc, prometheus.GaugeValue, float64(Mem.Total)/1024/1024/1024, c.labelValues...)
-}
-
 func NewmemCollector() *memCollector {
 	return &memCollector{
 		myDesc: prometheus.NewDesc(
@@ -37,4 +25,16 @@ func NewmemCollector() *memCollector {
 		// 动态标签的 value 列表，这里必须与声明的动态标签的 key 一一对应
 		labelValues: []string{"server", "linux"},
 	}
+}
+
+// 每个收集器都必须实现 descripe 函数
+func (c *memCollector) Describe(ch chan<- *prometheus.Desc) {
+	ch <- c.myDesc
+}
+
+// 采集指标
+func (c *memCollector) Collect(ch chan<- prometheus.Metric) {
+	Mem, _ := mem.VirtualMemory()
+	fmt.Println(Mem.Total)
+	ch <- prometheus.MustNewConstMetric(c.myDesc, prometheus.GaugeValue, float64(Mem.Total)/1024/1024/1024, c.labelValues...)
 }
