@@ -67,4 +67,12 @@ else
         sed -i '/vm.swappiness/cvm.swappiness=1' $SYSFILE
 fi
 
+ret=`sed -n '/vm.max_map_count/p' $SYSFILE`
+if [ ! "$ret" ]
+then
+        echo  'vm.max_map_count=1000000' >> $SYSFILE
+else
+        sed -i '/vm.max_map_count/cvm.max_map_count=1000000' $SYSFILE
+fi
+
 sysctl -p
